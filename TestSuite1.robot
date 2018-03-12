@@ -45,82 +45,84 @@ Library   TestCases/CreateLearner.py
 Library   TestCases/CreateLearnerAdministrator.py
 Library   TestCases/CreateMasterAdmin.py
 
+#functions for Create Campaign With TRACKS
+Library           TestCases/CampaignCreateTrackWithTextLesson.py
+Library           TestCases/CampaignCreateTrackWithImageLesson.py
+Library           TestCases/CampaignCreateTrackWithVideoLesson.py
+Library           TestCases/CampaignCreateTrackWithDocumentLesson.py
+Library           TestCases/CampaignCreateTrackWithQuestionLesson.py
+
+Library           TestCases/CampaignTrackAllCardsOnetimeLesson.py
+Library           TestCases/CampaignTrackAllCardsTwoTimeLesson.py
+Library           TestCases/CampaignTrackTxtImgQueLesson.py
+Library           TestCases/CampaignTrackVidDocQueLesson.py
+Library           TestCases/CampaignTrackTxtVidQueLesson.py
+Library           TestCases/CampaignTrackTextLessonImageLesson.py
+Library           TestCases/CampaignTrackImageLessonVideoLesson.py
+Library           TestCases/CampaignTrackVideoDocumentQuestionsLessons.py
+Library           TestCases/CampaignTrackQuesAllCardsOneAllCardsTwoTime.py
+Library           TestCases/CampaignTrackFourLessonsOne.py
+Library           TestCases/CampaignTrackFourLessonsTwo.py
+Library           TestCases/CampaignTrackFourLessonsThree.py
+
+Library           TestCases/DeleteLesson.py
+
+
 
 *** Test Cases ***
 TC0 - User Login
     User Login
 
-#Test cases for Lesson creation
+CreateCampTrackTextLesson
+    Campaign For Track With Text Lesson
 
-TC5 - LessonCreateImage
-    Lesson With Image Upload Card
-TC6 - LessonCreateVideo
-    Lesson With Video Upload Card
-    
-#Test cases for Track creation
-TC7 - TrackWithTxtImgQueLesson
-    Lesson With Text Image Question Card
-    
-TC8 - TrackWithDocumentLesson
-    Lesson With Document Card
-    
-TC9 - TrackWithImageLesson
-    Lesson With Image Card
-    
-TC10 - TrackWithQuestionLesson
-    TrackWithQuestionLesson.Lesson With Question Answer Card   
+CreateCampTrackImageLesson
+    Campaign For Track With Image Lesson
 
+CreateCampTrackVideo
+    Campaign For Track With Video Lesson
 
+CreateCampTrackDocLesson
+    Campaign For Track With Document Lesson
 
-#Test cases for Campaign creation   
-TC11 - CreateCampaignForTextLesson
-    Create Campaign Text Lesson
+CreateCampTrackQuesLesson
+    Campaign For Track With Question Lesson
 
-TC12 - CreateCampaignForImageLesson
-    Create Campaign Image Lesson
+CampaignTrackAllCardsOnetimeLesson
+    Campaign For Track With All Cards One Time
 
-TC13 - CreateCampaignForVideoLesson
-    Create Campaign Video Lesson
+CampaignTrackAllCardsTwoTimeLesson
+    Campaign For Track With All Cards Two Time
 
-TC14 - CreateCampaignForDocumentLesson
-    Create Campaign Document Lesson
+CampaignTrackTxtImgQueLesson
+    Campaign For Track With Text Image Question Lesson
 
-TC15 - CreateCampaignForQuestionLesson
-    Create Campaign Question Lesson
+CampaignTrackVidDocQueLesson
+    Campaign For Track With Video Document Question Lesson
 
-TC16 - CreateCampaignForTxtImgQueLesson
-    Create Campaign Text Image Ques Lesson
+CampaignTrackTxtVidQueLesson
+    Campaign For Track With Text Video Question Lesson
 
-TC17 - CreateCampaignForAllCardsOneTime
-    Create Campaign All Cards One Time Lesson
+CampaignTrackTextLessonImageLesson
+    Campaign For Track With Text Lesson Image Lesson
 
-TC18 - CreateCampaignForAllCardsTwoTime
-    Create Campaign With All Cards Two Time Lesson
+CampaignTrackImageLessonVideoLesson
+    Campaign For Track With Image Lesson Video Lesson
 
-TC19 - CreateCampaignForTxtVidQuesLesson
-    Create Campaign With Lesson Text Video Question
+CampaignTrackVideoDocumentQuestionsLessons
+    Campaign For Track With Video Lesson Document Lesson Question Lesson
 
-TC20 - CreateCampaignForVidDocQueLesson
-    Create Campaign With Lesson Video Document Question
+CampaignTrackQuesAllCardsOneAllCardsTwoTime
+    Campaign For Track With Question Lesson All Cards One All Cards Two Time
 
-#TC21 - CreateCampaignForFourLessonsOne
- #   Create Campaign With Four Lessons One
+CampaignTrackFourLessonsOne
+    Campaign For Track With Four Lessons One
 
-TC22 - CreateCampaignForFourLessonsTwo
-    Create Campaign With Four Lessons Two
+CampaignTrackFourLessonsTwo
+    Campaign For Track With Four Lessons Two
 
-#TC23 - CreateCampaignForFourLessonsThree
-   # Create Campaign With Four Lessons Three
+CampaignTrackFourLessonsThree
+    Campaign For Track With Four Lessons Three
 
-TC24 - CreateCampaignForTextAndImageLesson
-    Create Campaign With Text Lesson Image Lesson
-
-TC25 - CreateCampaignForImageAndVideoLesson
-    Create Campaign With Image Lesson Video Lesson
-
-#TC26 - CreateCampaignForQuesLesssonAllCards1timeAllCards2TimeLessons
- #   Create Campaign With Three Lessons
-
-TC27 - CreateCampaignForVideoLsnDocLsQuestionLes
-    Create Campaign With Video Lesson Document Lesson Question Lesson  
-    
+DeleteLesson
+    Main Delete
