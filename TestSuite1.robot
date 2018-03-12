@@ -49,19 +49,9 @@ Library   TestCases/CreateMasterAdmin.py
 *** Test Cases ***
 TC0 - User Login
     User Login
-    
-TC1 - Delete_Tags_Attributes_Lessons
-    Main Delete All
 
 #Test cases for Lesson creation
-TC2 - BlankLessonOne
-    Blank Lesson One Main
-    
-TC3 - LessonExplainAConcept
-    Lesson Explain A Concept Main
-    
-TC4 - TeachASkill
-    Teach A Skill Main
+
 TC5 - LessonCreateImage
     Lesson With Image Upload Card
 TC6 - LessonCreateVideo
@@ -133,20 +123,4 @@ TC25 - CreateCampaignForImageAndVideoLesson
 
 TC27 - CreateCampaignForVideoLsnDocLsQuestionLes
     Create Campaign With Video Lesson Document Lesson Question Lesson  
-   
-#TC28 - CampaignPageDisplay
- #   Campaigns Page Display Main
-
-
-#Test cases for User Creation with standard roles
-#TC29 - CreateCreator
- #   Create Creator User And Validation
     
-#TC30 - CreateLearner
- #   Create Learner User And Validation
-    
-#TC31 - CreateLearnerAdministrator
- #   Create Learner Admin User And Validation
-    
-#TC32 - CreateMasterAdmin
- #   Create Master Admin User And Validation 
