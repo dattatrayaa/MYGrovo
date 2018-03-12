@@ -4,6 +4,8 @@ Created on 07-Mar-2018
 @author: dattatraya
 '''
 
+import time
+
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -16,7 +18,7 @@ class CreateTrackComman:
     def createTrack(self,titleOfTrack,Imagefilepath,description,tagName,lessonname,expectedSuccessText):
         print "Creating track with one lesson contains Text Card"
         
-        wait=WebDriverWait(driver, 60)
+        wait=WebDriverWait(driver, 100)
         wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
         
         print "Clicking on Lessons button from side menu"
@@ -91,7 +93,10 @@ class CreateTrackComman:
         
         print "Clicking on Publish Track button"
         
+        wait.until(EC.element_to_be_clickable((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/div/div[2]/div[2]/div[3]/button")))
         driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[2]/div/div/div[2]/div[2]/div[3]/button").click()
+        
+        time.sleep(3)
         
         '''print "Verifying Success message is displaying"
         
@@ -111,7 +116,7 @@ class CreateTrackComman:
         
       
         
-        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/div/ul/li[2]/a").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[2]/div/div/div[1]/a").click()
         
         wait.until(EC.visibility_of_element_located((By.XPATH,"//tbody/tr/td[2]/a[.='"+titleOfTrack+"']")))
         
