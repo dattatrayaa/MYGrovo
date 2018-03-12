@@ -18,10 +18,10 @@ class CreateLessonDifferentLessons:
     def lessonWithText(self,lessonName,textCard):
         
         wait=WebDriverWait(driver, 60)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
 
         print "Clicking on Lessons button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a").click()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div/button")))
      
         print "Click on Create lesson button"
@@ -133,10 +133,10 @@ class CreateLessonDifferentLessons:
     def lessonWithImage(self,lessonName,Imagefilepath1):
         
         wait=WebDriverWait(driver, 60)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a").click()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div/button")))
      
         print "Click on Create lesson button"
@@ -249,10 +249,10 @@ class CreateLessonDifferentLessons:
     def lessonWithVideo(self,lessonName,videoPath,timeToUploadVideo):
         
         wait=WebDriverWait(driver, timeToUploadVideo)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a").click()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div/button")))
      
         print "Click on Create lesson button"
@@ -373,10 +373,10 @@ class CreateLessonDifferentLessons:
         print "This is lesson with document"
         
         wait=WebDriverWait(driver, timeToUploaddocument)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a").click()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div/button")))
      
         print "Click on Create lesson button"
@@ -496,10 +496,10 @@ class CreateLessonDifferentLessons:
 
     def lessonWithQuestion(self,lessonName,questionCard,ans1,ans2):
         wait=WebDriverWait(driver, 60)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
 
         print "Clicking on Lessons button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a").click()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div/button")))
      
         print "Click on Create lesson button"
