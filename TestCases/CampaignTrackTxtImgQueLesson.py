@@ -6,6 +6,7 @@ Created on 07-Mar-2018
 import os.path
 import traceback
 
+from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -91,14 +92,14 @@ class CampaignTrackTxtImgQueLesson:
         print "Clicking on save & exit button"
         elements.saveAndExitButton()
         
-        #verifying success message
+        '''#verifying success message
         print "\nVerifying success message"
         
         if elements.successMessage()==actualSuccessMessage:
             print "Message '"+actualSuccessMessage+"' is displayed"
         else:
             print "Success message is not displayed properly"
-            raise Exception
+            raise Exception'''
         
         #Verifying campaign detail page is displayed
         print "\nVerifying campaign detail page is displayed"
@@ -108,6 +109,18 @@ class CampaignTrackTxtImgQueLesson:
         else:
             print "Campaign detail page is not displayed"
             raise Exception
+        
+        
+        #verifying in Campaigns displayed in Campaigns grid
+        elements.searchingForlesson(campaignTitle)
+        
+        if elements.actualCampTitleINGrid()==campaignTitle:
+            print "Campaign '"+campaignTitle+"' displayed in Grid"
+        
+        else:
+            print "Campaign is not displayed in Grid"
+            raise Exception
+        
         
         print "\n----Text Execution Completed----\n"
     
@@ -324,4 +337,14 @@ class CampaignTrackTxtImgQueLesson:
             url = cell.value
             driver.get(url)
     
- 
+    
+    
+if __name__ == '__main__':
+    
+    btc=BaseTestClass()
+    btc.UserLogin()
+    
+    ol=CampaignTrackTxtImgQueLesson()
+    ol.CampaignForTrackWithTextImageQuestionLesson()
+    
+    

@@ -6,7 +6,7 @@ Created on 08-Mar-2018
 import os.path
 import traceback
 
-
+from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -213,7 +213,7 @@ class CampaignTrackImageLessonVideoLesson:
         print "Clicking on save & exit button"
         elements.saveAndExitButton()
         
-        #verifying success message
+        '''#verifying success message
         print "\nVerifying success message"
         
         if elements.successMessage()==actualSuccessMessage:
@@ -221,7 +221,7 @@ class CampaignTrackImageLessonVideoLesson:
         else:
             print "Success message is not displayed properly"
             raise Exception
-        
+        '''
         #Verifying campaign detail page is displayed
         print "\nVerifying campaign detail page is displayed"
         
@@ -229,6 +229,17 @@ class CampaignTrackImageLessonVideoLesson:
             print "Campaign detail page is displayed"
         else:
             print "Campaign detail page is not displayed"
+            raise Exception
+        
+        
+        #verifying in Campaigns displayed in Campaigns grid
+        elements.searchingForlesson(campaignTitle)
+        
+        if elements.actualCampTitleINGrid()==campaignTitle:
+            print "Campaign '"+campaignTitle+"' displayed in Grid"
+        
+        else:
+            print "Campaign is not displayed in Grid"
             raise Exception
         
         print "\n----Text Execution Completed----\n"
@@ -314,4 +325,13 @@ class CampaignTrackImageLessonVideoLesson:
             driver.get(url)
     
     
- 
+                
+if __name__ == '__main__':
+    
+    btc=BaseTestClass()
+    btc.UserLogin()
+    
+    ol=CampaignTrackImageLessonVideoLesson()
+    ol.CampaignForTrackWithImageLessonVideoLesson()
+            
+    

@@ -3,12 +3,10 @@ Created on 22-Feb-2018
 
 @author: dattatraya
 '''
-
 import os.path
-import time
 
+from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -85,13 +83,12 @@ class LessonCreateDocument:
             raise Exception
         
         
-        time.sleep(4)
         
         print "Publishing lesson"
         
-        publishButton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
-
-        publishButton.click()
+        publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
+        
+        driver.execute_script("arguments[0].click();",publishbutton)
 
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
@@ -100,7 +97,7 @@ class LessonCreateDocument:
         
         
         
-        # verifying success message
+        '''# verifying success message
         
         
         
@@ -114,7 +111,7 @@ class LessonCreateDocument:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
         
@@ -152,13 +149,21 @@ class LessonCreateDocument:
         
         cell3 = first_sheet.cell(28,1)
         giveTimetoUploadDocument = cell3.value
+        
         try:
             doc=LessonCreateDocument()
             doc.lessonWithDocument(lessonname, documentpath, giveTimetoUploadDocument)
-            
         finally:
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
         
+
+if __name__ == '__main__':
+    btc=BaseTestClass()
+    btc.UserLogin()
+    
+    m3=LessonCreateDocument()
+    m3.lessonWithDocumentUploadCard()
+    

@@ -1,19 +1,20 @@
 '''
 Created on 21-Feb-2018
 
-@author: QA
+@author: dattatraya
 '''
 import os.path
 import time
-import traceback
+
+from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import xlrd
 
+
 class LessonCreateVideo:
-    
     def lessonWithVideo(self,lessonName,videoPath,timeToUploadVideo):
         
         wait=WebDriverWait(driver, timeToUploadVideo)
@@ -25,6 +26,7 @@ class LessonCreateVideo:
      
         print "Click on Create lesson button"
         driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[2]/div/header/div/button").click()
+        
         print "Verifying Create new lesson tab is displayed"
         
         #assert "Create a new lesson"==driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/h3").text
@@ -35,12 +37,18 @@ class LessonCreateVideo:
             raise Exception
         
         # self.assertEqual("Create a new lesson", driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/h3").text)
+
+        
+               
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[2]/div[2]/div")))
+
         
         print "Clicked on Blank lesson"
         driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[2]/div").click()
         
         print "Creating New lesson With one Video card"
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[3]/div[1]/div/div[2]/div[2]/div/div/div/h1/textarea")))
 
         driver.find_element_by_xpath(".//*[@id='content']/div/div/div[3]/div[1]/div/div[2]/div[2]/div/div/div/h1/textarea").send_keys(lessonName)
@@ -48,9 +56,11 @@ class LessonCreateVideo:
         wait.until(EC.visibility_of_element_located((By.XPATH,"//span[@class='lesson-editor-status' and .='Saved']")))
         
         print "Entered lesson name ::"+lessonName
+        
         print "Click on (+) icon"
         
         driver.find_element_by_xpath(".//*[@id='content']/div/div/div[3]/div[3]/div[2]/div[2]/div/div/span").click()
+        
         #Clicking on Video card
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[2]/div[2]/div/div[2]/div[1]/div[3]/div[1]").click()
         
@@ -73,15 +83,23 @@ class LessonCreateVideo:
         time.sleep(4)        
         print "Publishing lesson"
         
+        
         publishButton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
+
         publishButton.click()
 
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
+
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]").click()
         print "Clicked on publish button"
         
+        
+        
         # verifying success message
-        print "Verifying Success message"
+        
+        
+        
+        '''print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
         headerText=driver.find_element_by_xpath(".//*[@id='content']/div/div/div[2]/div/div/span[2]").text
@@ -91,13 +109,15 @@ class LessonCreateVideo:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
+        
         
         driver.find_element_by_xpath(".//*[@id='content']/div/div/div[3]/div[1]/div/div[2]/div[1]/a").click()
         
         #Verifying created lesson is displayed in list
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,"(//tbody/tr/td[2]/a[.='"+lessonName+"'])[1]")))
 
         if driver.find_element_by_xpath("(//tbody/tr/td[2]/a[.='"+lessonName+"'])[1]").is_displayed():
@@ -130,13 +150,16 @@ class LessonCreateVideo:
             vid=LessonCreateVideo()
             vid.lessonWithVideo(lessonname, videopath, giveTimetoUploadVideo)
         
-        except Exception as e:
-            traceback.print_exc()
-            print (e)
-            raise Exception
-        
         finally:    
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
+    
+
+if __name__ == '__main__':
+    btc=BaseTestClass()
+    btc.UserLogin()
+    
+    m3=LessonCreateVideo()
+    m3.lessonWithVideoUploadCard()

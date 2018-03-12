@@ -7,6 +7,7 @@ import os.path
 import time
 import traceback
 
+from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -92,14 +93,14 @@ class CampaignTrackAllCardsOnetimeLesson:
         print "Clicking on save & exit button"
         elements.saveAndExitButton()
         
-        #verifying success message
+        '''#verifying success message
         print "\nVerifying success message"
         
         if elements.successMessage()==actualSuccessMessage:
             print "Message '"+actualSuccessMessage+"' is displayed"
         else:
             print "Success message is not displayed properly"
-            raise Exception
+            raise Exception'''
         
         #Verifying campaign detail page is displayed
         print "\nVerifying campaign detail page is displayed"
@@ -109,6 +110,17 @@ class CampaignTrackAllCardsOnetimeLesson:
         else:
             print "Campaign detail page is not displayed"
             raise Exception
+        
+        #verifying in Campaigns displayed in Campaigns grid
+        elements.searchingForlesson(campaignTitle)
+        
+        if elements.actualCampTitleINGrid()==campaignTitle:
+            print "Campaign '"+campaignTitle+"' displayed in Grid"
+        
+        else:
+            print "Campaign is not displayed in Grid"
+            raise Exception
+        
         
         print "\n----Text Execution Completed----\n"
     
@@ -181,10 +193,7 @@ class CampaignTrackAllCardsOnetimeLesson:
         
         
         
-        # verifying success message
-        
-        
-        
+        '''# verifying success message
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
@@ -195,7 +204,7 @@ class CampaignTrackAllCardsOnetimeLesson:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
         
@@ -319,6 +328,17 @@ class CampaignTrackAllCardsOnetimeLesson:
             driver.get(url)
     
     
+    
+if __name__ == '__main__':
+    
+    btc=BaseTestClass()
+    btc.UserLogin()
+    
+    ol=CampaignTrackAllCardsOnetimeLesson()
+    ol.CampaignForTrackWithAllCardsOneTime()
+    
+    
+
 
     
     
