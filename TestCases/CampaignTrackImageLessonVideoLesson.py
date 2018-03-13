@@ -23,10 +23,10 @@ class CampaignTrackImageLessonVideoLesson:
         print "\nCreating track with one lesson contains Text Card"
         
         wait=WebDriverWait(driver, 120)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//a[@href='/create/lessons']")))
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a").click()
         
         print "Clicking on Track button from side menu"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/div/ul/li[2]/a")))
@@ -325,4 +325,3 @@ class CampaignTrackImageLessonVideoLesson:
             driver.get(url)
     
     
- 
