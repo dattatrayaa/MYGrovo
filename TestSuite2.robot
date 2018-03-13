@@ -32,6 +32,8 @@ Library   TestCases/CreateLearner.py
 Library   TestCases/CreateLearnerAdministrator.py
 Library   TestCases/CreateMasterAdmin.py
 
+Library           TestCases/DeleteLesson.py
+
 
 *** Test Cases ***
 TC1
