@@ -1,24 +1,28 @@
 '''
 Created on 02-Mar-2018
 
-@author: QA
+@author: dattatraya
 '''
 import os.path
+import time
 import traceback
+
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import xlrd
+
 from CampaignPageElements import CampPage
+
 
 class CreateCampaignForFourLessonsThree:
     
     def createCampaignFourLessonsCombiThree(self,campaignTitle,campDescription,actualSuccessMessage,lessonName1,lessonName2,lessonName3,lessonName4,minPassingScore,numberOfAttempts):
+        elements=CampPage()
         
         wait=WebDriverWait(driver, 60)
-        elements=CampPage()
         
         print "\n\nCreating Campaign"
         wait.until(EC.visibility_of_element_located((By.XPATH,elements.campaignButtonFromSideMenuXpath())))
@@ -32,12 +36,15 @@ class CreateCampaignForFourLessonsThree:
             print "Campaigns page is not displayed"
             raise Exception
         
+        
         print "Clicking on Create Campaign button"
         wait.until(EC.visibility_of_element_located((By.XPATH,elements.createCampaignButtonXpath())))
         elements.createCampaignButton()
         
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,elements.Camp_titleXpath())))
         print "Create Campaign page is displayed"
+        
                   
         elements.titleTextField(campaignTitle)
         print "Title entered ::campTitle"
@@ -132,14 +139,14 @@ class CreateCampaignForFourLessonsThree:
         print "Clicking on save & exit button"
         elements.saveAndExitButton()
         
-        #verifying success message
+        '''#verifying success message
         print "\nVerifying success message"
         
         if elements.successMessage()==actualSuccessMessage:
             print "Message '"+actualSuccessMessage+"' is displayed"
         else:
             print "Success message is not displayed properly"
-            raise Exception
+            raise Exception'''
         
         #Verifying campaign detail page is displayed
         print "\nVerifying campaign detail page is displayed"
@@ -148,6 +155,16 @@ class CreateCampaignForFourLessonsThree:
             print "Campaign detail page is displayed"
         else:
             print "Campaign detail page is not displayed"
+            raise Exception
+        
+        #verifying in Campaigns displayed in Campaigns grid
+        elements.searchingForlesson(campaignTitle)
+        
+        if elements.actualCampTitleINGrid()==campaignTitle:
+            print "Campaign '"+campaignTitle+"' displayed in Grid"
+        
+        else:
+            print "Campaign is not displayed in Grid"
             raise Exception
         
         print "\n----Text Execution Completed----\n"
@@ -203,6 +220,8 @@ class CreateCampaignForFourLessonsThree:
         #Clicking on Document card
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[2]/div[2]/div/div[2]/div[1]/div[4]/div[1]/div").click()
         
+        
+        
         #Uploading Document
         print "Uploading Document"
         driver.find_element_by_css_selector('input[type="file"]').send_keys(documentPath)
@@ -219,19 +238,26 @@ class CreateCampaignForFourLessonsThree:
             print "Failed to upload the Document file"
             raise Exception
         
+        
+        
+        
         print "Publishing lesson"
         
-        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
-        driver.execute_script("arguments[0].click();",publishbutton)
         
+        driver.execute_script("arguments[0].click();",publishbutton)
+        time.sleep(2)
+
+        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
+
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]").click()
         print "Clicked on publish button"
         
-        # verifying success message
-        print "Verifying Success message"
+        
+        
+        '''print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
         headerText=driver.find_element_by_xpath(".//*[@id='content']/div/div/div[2]/div/div/span[2]").text
@@ -241,13 +267,16 @@ class CreateCampaignForFourLessonsThree:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
         
         
         driver.find_element_by_xpath(".//*[@id='content']/div/div/div[3]/div[1]/div/div[2]/div[1]/a").click()
+        
         #Verifying created lesson is displayed in list
+        
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,"(//tbody/tr/td[2]/a[.='"+lessonname+"'])[1]")))
 
         if driver.find_element_by_xpath("(//tbody/tr/td[2]/a[.='"+lessonname+"'])[1]").is_displayed():
@@ -286,6 +315,9 @@ class CreateCampaignForFourLessonsThree:
 
         
         wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[2]/div[2]/div")))
+
+        
+        
         print "Clicked on Blank lesson"
         driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[2]/div").click()
         
@@ -317,6 +349,11 @@ class CreateCampaignForFourLessonsThree:
         print "Entering Second answer"
         driver.find_element_by_xpath(".//*[@id='question-answer-input-1']").send_keys(ans2)
         print "Second Answer entered "
+        
+        
+
+         
+        
         print "\nVerifying All the data entered is displaying in fields"
         
         if questionArea.text==questionCard:
@@ -354,6 +391,8 @@ class CreateCampaignForFourLessonsThree:
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
         
         driver.execute_script("arguments[0].click();",publishbutton)
+        
+
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]").click()
@@ -389,7 +428,10 @@ class CreateCampaignForFourLessonsThree:
         
         
         driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[4]").click()
-        #Taking methods of creating all cards
+        
+
+
+    #Taking methods of creating all cards
     
     def textCard(self,textCard):
         print "Text card"
@@ -420,7 +462,6 @@ class CreateCampaignForFourLessonsThree:
             raise Exception
         
     def imageCard(self,Imagefilepath1):
-        
         print "\nUploading Image"
         wait=WebDriverWait(driver, 60)
         print "Click on (+) icon"
@@ -446,7 +487,6 @@ class CreateCampaignForFourLessonsThree:
             raise Exception
         
     def videoCard(self,videoPath,timeToUploadVideo):
-        
         print "Click on (+) icon"
         
         driver.find_element_by_xpath(".//*[@id='content']/div/div/div[3]/div[3]/div[2]/div[2]/div/div/span").click()
@@ -469,6 +509,9 @@ class CreateCampaignForFourLessonsThree:
         else:
             print "Failed to upload the Video file"
             raise Exception
+        
+        
+    
     
     def docCard(self,documentPath):
         print "Document"
@@ -478,6 +521,8 @@ class CreateCampaignForFourLessonsThree:
         
         #Clicking on Document card
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[2]/div[2]/div/div[2]/div[1]/div[4]/div[1]/div").click()
+        
+        
         
         #Uploading Document
         print "Uploading Document"
@@ -521,6 +566,10 @@ class CreateCampaignForFourLessonsThree:
         driver.find_element_by_xpath(".//*[@id='question-answer-input-1']").send_keys(ans2)
         print "Second Answer entered "
         
+        
+
+         
+        
         print "\nVerifying All the data entered is displaying in fields"
         
         if questionArea.text==questionCard:
@@ -528,6 +577,7 @@ class CreateCampaignForFourLessonsThree:
         else:
             print "Question is not displayed"
             raise Exception
+        
         
         if driver.find_element_by_xpath(".//*[@id='question-answer-input-0']").text==ans1:
             print "Answer 1 ::"+ans1
@@ -540,6 +590,9 @@ class CreateCampaignForFourLessonsThree:
         else:
             print "Answer 2 is not displayed"
             raise Exception
+    
+    
+    
     
     
     #All Cards one time
@@ -566,7 +619,13 @@ class CreateCampaignForFourLessonsThree:
             raise Exception
         
         # self.assertEqual("Create a new lesson", driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/h3").text)
+
+        
+               
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[2]/div[2]/div")))
+
+        
         
         print "Clicked on Blank lesson"
         driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[2]/div").click()
@@ -580,15 +639,15 @@ class CreateCampaignForFourLessonsThree:
         print "Entered lesson name ::"+lessonName
       
         #Text Card
-        objfore=CreateCampaignForFourLessonsThree()
+        objll=CreateCampaignForFourLessonsThree()
          
-        objfore.textCard(textCard)
-        objfore.imageCard(Imagefilepath1)
-        objfore.videoCard(videoPath, timeToUploadVideo)
-        objfore.docCard(documentPath)
-        objfore.quesCard(questionCard, ans1, ans2)
-        objfore.textCard(textCard)
-        driver.find_element_by_xpath("//div[@class='card-delete']/button").click()
+        objll.textCard(textCard)
+        objll.imageCard(Imagefilepath1)
+        objll.videoCard(videoPath, timeToUploadVideo)
+        objll.docCard(documentPath)
+        objll.quesCard(questionCard, ans1, ans2)
+        objll.textCard(textCard)
+        time.sleep(2)
         print "All Cards inserted"
         
         print "Publishing lesson"
@@ -596,13 +655,21 @@ class CreateCampaignForFourLessonsThree:
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
         
         driver.execute_script("arguments[0].click();",publishbutton)
-        
+        time.sleep(2)
+
+        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
+
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]").click()
         print "Clicked on publish button"
         
-        # verifying success message
+        
+        
+        '''# verifying success message
+        
+        
+        
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
@@ -613,7 +680,7 @@ class CreateCampaignForFourLessonsThree:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
         
@@ -634,6 +701,7 @@ class CreateCampaignForFourLessonsThree:
         
         driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[4]").click()
     
+
 
     def allCardstwoTime(self,lessonName,textCard,Imagefilepath1,videoPath, timeToUploadVideo,documentPath,questionCard, ans1, ans2):
         
@@ -658,7 +726,13 @@ class CreateCampaignForFourLessonsThree:
             raise Exception
         
         # self.assertEqual("Create a new lesson", driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/h3").text)
+
+        
+               
+        
         wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[2]/div[2]/div")))
+
+        
         
         print "Clicked on Blank lesson"
         driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[2]/div").click()
@@ -690,7 +764,7 @@ class CreateCampaignForFourLessonsThree:
         objfore.quesCard(questionCard, ans1, ans2)
         
         objfore.textCard(textCard)
-        
+        time.sleep(2)
         print "All Cards inserted"
         
         print "Publishing lesson"
@@ -698,17 +772,18 @@ class CreateCampaignForFourLessonsThree:
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
         
         driver.execute_script("arguments[0].click();",publishbutton)
-        
+        time.sleep(2)
+
+        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
+
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]").click()
         print "Clicked on publish button"
         
         
-        # verifying success message
         
-        
-        print "Verifying Success message"
+        '''print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
         headerText=driver.find_element_by_xpath(".//*[@id='content']/div/div/div[2]/div/div/span[2]").text
@@ -718,7 +793,7 @@ class CreateCampaignForFourLessonsThree:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
         
@@ -802,6 +877,8 @@ class CreateCampaignForFourLessonsThree:
         cell1 = first_sheet.cell(241,1)
         ans2 = cell1.value
         
+        
+        
         try:
             print "\n\n----This Test case creates campaigns with Four Lesson----\n1. Document\n2. Question\n3. All Cards\n4. All Cards two times\n"
             newobj=CreateCampaignForFourLessonsThree()
@@ -810,14 +887,19 @@ class CreateCampaignForFourLessonsThree:
             newobj.allCardsOneTime(lessonName3, textCard, Imagefilepath1, videoPath, timeToUploadVideo, documentPath, questionCard, ans1, ans2)
             newobj.allCardstwoTime(lessonName4, textCard, Imagefilepath1, videoPath, timeToUploadVideo, documentPath, questionCard, ans1, ans2)
             newobj.createCampaignFourLessonsCombiThree(campaignTitle, campDescription, actualSuccessMessage, lessonName1, lessonName2, lessonName3, lessonName4, minPassingScore, numberOfAttempts)
-            
+          
         except Exception as e:
             traceback.print_exc()
             print (e)
-            raise Exception
+            raise Exception    
             
         finally:
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
+        
+        
+        
+
+    
