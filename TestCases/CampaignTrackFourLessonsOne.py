@@ -7,7 +7,6 @@ import os.path
 import time
 import traceback
 
-
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -565,37 +564,38 @@ class CampaignTrackFourLessonsOne:
         
         wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[2]/div[2]/div/ul/li[1]/div[1]/div")))
         
+        searchLesson=driver.find_element_by_xpath("//input[@id='search-lessons-in-modal']")
         print "Searching for first lesson in Add lessons pop up"
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName1)
+        searchLesson.send_keys(lessonName1)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName1+"']/../../div[1]/div")))
         searchedLesson.click()
         print "Lesson '"+lessonName1+"' selected"
         
-        
+        time.sleep(2)
         print "Searching for Second lesson in Add lessons pop up"
-        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        searchLesson.clear()
         
-        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName2)
-        #searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div")))
+        searchLesson.send_keys(lessonName2)
+        searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div")))
         driver.find_element_by_xpath("//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div").click()
         print "Lesson '"+lessonName2+"' selected"
         
-        
+        time.sleep(2)
         print "Searching for Third lesson in Add lessons pop up"
-        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
-        time.sleep(1)
-        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName3)
-        #searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div")))
+        searchLesson.clear()
+       
+        searchLesson.send_keys(lessonName3)
+        searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div")))
         driver.find_element_by_xpath("//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div").click()
         print "Lesson '"+lessonName3+"' selected"
         
         
         
         print "Searching for Fourth lesson in Add lessons pop up"
-        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        searchLesson.clear()
         time.sleep(1)
-        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName4)
-        #searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div")))
+        searchLesson.send_keys(lessonName4)
+        searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div")))
         driver.find_element_by_xpath("//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div").click()
         print "Lesson '"+lessonName4+"' selected"
         
@@ -906,4 +906,4 @@ class CampaignTrackFourLessonsOne:
             driver.get(url)
     
     
-
+ 

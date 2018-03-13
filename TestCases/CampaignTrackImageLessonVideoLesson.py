@@ -6,7 +6,6 @@ Created on 08-Mar-2018
 import os.path
 import traceback
 
-from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -30,7 +29,8 @@ class CampaignTrackImageLessonVideoLesson:
         driver.find_element_by_xpath("//a[@href='/create/lessons']").click()
         
         print "Clicking on Track button from side menu"
-        driver.find_element_by_xpath("//a[@href='/create/tracks']").click()
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/div/ul/li[2]/a")))
+        driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/div/ul/li[2]/a").click()
         
         createTrackbutton=wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div/a")))
         
@@ -325,13 +325,4 @@ class CampaignTrackImageLessonVideoLesson:
             driver.get(url)
     
     
-                
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    ol=CampaignTrackImageLessonVideoLesson()
-    ol.CampaignForTrackWithImageLessonVideoLesson()
-            
-    
+ 

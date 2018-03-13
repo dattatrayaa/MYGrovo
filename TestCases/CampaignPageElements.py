@@ -148,8 +148,8 @@ class CampPage:
     def addToCampaignTrack(self):
         
         wait=WebDriverWait(driver, 60)
-        wait.until(EC.element_to_be_clickable((By.XPATH,"//button[contains(.,'Add to campaign')]")))
-        driver.find_element_by_xpath("//button[contains(.,'Add to campaign')]").click()
+        wait.until(EC.element_to_be_clickable((By.XPATH,"(//button[@class='btn primary-cta-branding'])[3]")))
+        driver.find_element_by_xpath("(//button[@class='btn primary-cta-branding'])[3]").click()
         
     
     def firstTrackInGrid(self):
