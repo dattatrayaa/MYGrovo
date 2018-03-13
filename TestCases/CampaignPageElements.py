@@ -75,15 +75,23 @@ class CampPage:
         
         
     def firstLessonInGrid(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//li[1]/div[2]/div/h4/div/span")))
         return driver.find_element_by_xpath("//li[1]/div[2]/div/h4/div/span").text
     
     def secondLessonInGrid(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//li[2]/div[2]/div/h4/div/span")))
         return driver.find_element_by_xpath("//li[2]/div[2]/div/h4/div/span").text
         
     def thirdLessonInGrid(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//li[3]/div[2]/div/h4/div/span")))
         return driver.find_element_by_xpath("//li[3]/div[2]/div/h4/div/span").text
         
     def fourthLessonInGrid(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//li[4]/div[2]/div/h4/div/span")))
         return driver.find_element_by_xpath("//li[4]/div[2]/div/h4/div/span").text
         
         
@@ -94,6 +102,8 @@ class CampPage:
         
         
     def saveAndExitButton(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.element_to_be_clickable((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/div[2]/button[2]")))
         driver.find_element_by_xpath(".//*[@id='content']/div/div[3]/div[2]/div/div[2]/button[2]").click()
         
     def campaignDetailPageHeaderText(self):
@@ -133,12 +143,13 @@ class CampPage:
         wait.until(EC.visibility_of_element_located((By.XPATH,"(//li/div[2]/h4[.='"+trackName+"']/../../div[1]/div)[1]")))
         
         driver.find_element_by_xpath("(//li/div[2]/h4[.='"+trackName+"']/../../div[1]/div)[1]").click()
+        time.sleep(2)
         
     def addToCampaignTrack(self):
         
         wait=WebDriverWait(driver, 60)
-        wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div[2]/div/div/div[2]/div[3]/button[@class='btn primary-cta-branding']")))
-        driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[3]/button[@class='btn primary-cta-branding']").click()
+        wait.until(EC.element_to_be_clickable((By.XPATH,"//button[contains(.,'Add to campaign')]")))
+        driver.find_element_by_xpath("//button[contains(.,'Add to campaign')]").click()
         
     
     def firstTrackInGrid(self):

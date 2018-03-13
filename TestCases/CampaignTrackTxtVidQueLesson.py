@@ -6,7 +6,6 @@ Created on 07-Mar-2018
 import os.path
 import traceback
 
-from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -212,7 +211,7 @@ class CampaignTrackTxtVidQueLesson:
         
         
         
-        # verifying success message
+        '''# verifying success message
         
         
         print "Verifying Success message"
@@ -225,7 +224,7 @@ class CampaignTrackTxtVidQueLesson:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception
+            raise Exception'''
 
         print "Lesson published"
         
@@ -341,13 +340,4 @@ class CampaignTrackTxtVidQueLesson:
             url = cell.value
             driver.get(url)
     
-    
-    
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    ol=CampaignTrackTxtVidQueLesson()
-    ol.CampaignForTrackWithTextVideoQuestionLesson()
-    
+ 
