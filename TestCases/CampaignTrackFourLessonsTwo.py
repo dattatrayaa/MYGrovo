@@ -7,7 +7,7 @@ import os.path
 import time
 import traceback
 
-from BaseTestClass import BaseTestClass
+
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -130,7 +130,10 @@ class CampaignTrackFourLessonsTwo:
         
         
         
-        '''# verifying success message
+        # verifying success message
+        
+        
+        
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
@@ -141,7 +144,7 @@ class CampaignTrackFourLessonsTwo:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -225,6 +228,7 @@ class CampaignTrackFourLessonsTwo:
         
         print "Searching for Second lesson in Add lessons pop up"
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+		time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName2)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div")))
         searchedLesson.click()
@@ -233,6 +237,7 @@ class CampaignTrackFourLessonsTwo:
         
         print "Searching for Third lesson in Add lessons pop up"
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+		time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName3)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div")))
         searchedLesson.click()
@@ -240,8 +245,10 @@ class CampaignTrackFourLessonsTwo:
         
         
         
-        print "Searching for Third lesson in Add lessons pop up"
+        print "Searching for Fourth lesson in Add lessons pop up"
+		time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+		time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName4)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div")))
         searchedLesson.click()
@@ -548,13 +555,4 @@ class CampaignTrackFourLessonsTwo:
             url = cell.value
             driver.get(url)
     
-    
-                
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    ol=CampaignTrackFourLessonsTwo()
-    ol.CampaignForTrackWithFourLessonsTwo()
-            
+  

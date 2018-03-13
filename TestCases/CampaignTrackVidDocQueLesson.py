@@ -7,7 +7,6 @@ import os.path
 import time
 import traceback
 
-from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -190,7 +189,7 @@ class CampaignTrackVidDocQueLesson:
         objforThis.quesCard(questionCard, ans1, ans2)
         objforThis.quesCard(questionCard, ans1, ans2)
         objforThis.quesCard(questionCard, ans1, ans2)
-        #objforThis.textCard(textCard)
+        objforThis.textCard("textCard")
         
         print "All Cards inserted"
         
@@ -346,13 +345,4 @@ class CampaignTrackVidDocQueLesson:
             url = cell.value
             driver.get(url)
     
-    
-    
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    ol=CampaignTrackVidDocQueLesson()
-    ol.CampaignForTrackWithVideoDocumentQuestionLesson()
     

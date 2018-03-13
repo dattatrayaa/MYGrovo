@@ -7,7 +7,6 @@ import os.path
 import time
 import traceback
 
-from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -574,6 +573,7 @@ class CampaignTrackFourLessonsOne:
         
         print "Searching for Second lesson in Add lessons pop up"
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName2)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div")))
         searchedLesson.click()
@@ -582,6 +582,7 @@ class CampaignTrackFourLessonsOne:
         
         print "Searching for Third lesson in Add lessons pop up"
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName3)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div")))
         searchedLesson.click()
@@ -589,8 +590,10 @@ class CampaignTrackFourLessonsOne:
         
         
         
-        print "Searching for Third lesson in Add lessons pop up"
+        print "Searching for Fourth lesson in Add lessons pop up"
+        time.sleep(2)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        time.sleep(1)
         driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName4)
         searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div")))
         searchedLesson.click()
@@ -901,16 +904,3 @@ class CampaignTrackFourLessonsOne:
             url = cell.value
             driver.get(url)
     
-    
-                
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    ol=CampaignTrackFourLessonsOne()
-    ol.CampaignForTrackWithFourLessonsOne()
-            
-
-
-
