@@ -7,6 +7,7 @@ import os.path
 import time
 import traceback
 
+
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -572,18 +573,18 @@ class CampaignTrackFourLessonsOne:
         
         
         print "Searching for Second lesson in Add lessons pop up"
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
         
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName2)
+        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName2)
         #searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div")))
         driver.find_element_by_xpath("//li/div[2]/h4[.='"+lessonName2+"']/../../div[1]/div").click()
         print "Lesson '"+lessonName2+"' selected"
         
         
         print "Searching for Third lesson in Add lessons pop up"
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
         time.sleep(1)
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName3)
+        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName3)
         #searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div")))
         driver.find_element_by_xpath("//li/div[2]/h4[.='"+lessonName3+"']/../../div[1]/div").click()
         print "Lesson '"+lessonName3+"' selected"
@@ -591,17 +592,15 @@ class CampaignTrackFourLessonsOne:
         
         
         print "Searching for Fourth lesson in Add lessons pop up"
-        time.sleep(2)
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
+        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").clear()
         time.sleep(1)
-        driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName4)
+        #driver.find_element_by_xpath(".//*[@id='search-lessons-in-modal']").send_keys(lessonName4)
         #searchedLesson=wait.until(EC.visibility_of_element_located((By.XPATH,"//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div")))
         driver.find_element_by_xpath("//li/div[2]/h4[.='"+lessonName4+"']/../../div[1]/div").click()
         print "Lesson '"+lessonName4+"' selected"
         
      
         print "Adding to Track"
-        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[2]/div[3]/button[1]")))
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div[2]/div/div/div[2]/div[3]/button[1]")))
         driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[3]/button[1]").click()
         
@@ -907,6 +906,4 @@ class CampaignTrackFourLessonsOne:
             driver.get(url)
     
     
-                
-
 
