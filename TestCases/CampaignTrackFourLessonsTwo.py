@@ -548,11 +548,21 @@ class CampaignTrackFourLessonsTwo:
             print (e)
             raise Exception  
         
-        finally:  
+        finally: 
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
+            try:
+                WebDriverWait(driver, 5).until(EC.alert_is_present(),
+                                   'Timed out waiting for PA creation ' +
+                                   'confirmation popup to appear.')
+
+                alert = driver.switch_to.alert
+                alert.accept()
+                print("alert accepted")
+            except Exception:
+                print("no alert")
     
     
  

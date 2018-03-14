@@ -233,7 +233,10 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
         
         
         
-        '''# verifying success message
+        # verifying success message
+        
+        
+        
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
@@ -244,7 +247,7 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -347,9 +350,6 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
         
         driver.execute_script("arguments[0].click();",publishbutton)
-        time.sleep(2)
-
-        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
@@ -358,7 +358,9 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
         
         
         
-        '''# verifying success message
+        # verifying success message
+        
+        
         
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
@@ -370,7 +372,7 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -495,16 +497,13 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
         
         driver.execute_script("arguments[0].click();",publishbutton)
-        time.sleep(2)
-
-        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]")))
 
         driver.find_element_by_xpath("html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/div/div[1]/section[3]/div/button[1]").click()
         print "Clicked on publish button"
         
-        '''print "\nVerifying Success message"
+        print "\nVerifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
 
         headerText=driver.find_element_by_xpath(".//*[@id='content']/div/div/div[2]/div/div/span[2]").text
@@ -514,7 +513,7 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
             print "Message '"+headerText+"' is displayed"
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -602,10 +601,21 @@ class CreateCampaignForVideoLsnDocLsQuestionLes:
             print (e)
             raise Exception  
             
-        finally:
+        finally: 
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
+            try:
+                WebDriverWait(driver, 5).until(EC.alert_is_present(),
+                                   'Timed out waiting for PA creation ' +
+                                   'confirmation popup to appear.')
+
+                alert = driver.switch_to.alert
+                alert.accept()
+                print("alert accepted")
+            except Exception:
+                print("no alert")
         
         
+ 

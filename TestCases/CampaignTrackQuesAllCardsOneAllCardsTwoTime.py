@@ -8,7 +8,6 @@ import os.path
 import time
 import traceback
 
-from BaseTestClass import BaseTestClass
 from BaseTestClass import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -90,7 +89,9 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
         
         
         
-        '''# verifying success message
+        # verifying success message
+        
+        
         
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
@@ -102,7 +103,7 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -199,7 +200,9 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
         
         
         
-        '''# verifying success message
+        # verifying success message
+        
+        
         
         print "Verifying Success message"
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div/div[2]/div/div/span[2]")))
@@ -211,7 +214,7 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -455,14 +458,14 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
         print "Clicking on save & exit button"
         elements.saveAndExitButton()
         
-        '''#verifying success message
+        #verifying success message
         print "\nVerifying success message"
         
         if elements.successMessage()==actualSuccessMessage:
             print "Message '"+actualSuccessMessage+"' is displayed"
         else:
             print "Success message is not displayed properly"
-            raise Exception'''
+            raise Exception
         
         #Verifying campaign detail page is displayed
         print "\nVerifying campaign detail page is displayed"
@@ -471,16 +474,6 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
             print "Campaign detail page is displayed"
         else:
             print "Campaign detail page is not displayed"
-            raise Exception
-        
-        #verifying in Campaigns displayed in Campaigns grid
-        elements.searchingForlesson(campaignTitle)
-        
-        if elements.actualCampTitleINGrid()==campaignTitle:
-            print "Campaign '"+campaignTitle+"' displayed in Grid"
-        
-        else:
-            print "Campaign is not displayed in Grid"
             raise Exception
         
         print "\n----Text Execution Completed----\n"    
@@ -593,19 +586,19 @@ class CampaignTrackQuesAllCardsOneAllCardsTwoTime:
             print (e)
             raise Exception  
         
-        finally:  
+        finally: 
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
-    
-    
-                
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    ol=CampaignTrackQuesAllCardsOneAllCardsTwoTime()
-    ol.CampaignForTrackWithQuestionLessonAllCardsOneAllCardsTwoTime()
-            
+            try:
+                WebDriverWait(driver, 5).until(EC.alert_is_present(),
+                                   'Timed out waiting for PA creation ' +
+                                   'confirmation popup to appear.')
+
+                alert = driver.switch_to.alert
+                alert.accept()
+                print("alert accepted")
+            except Exception:
+                print("no alert")
+ 

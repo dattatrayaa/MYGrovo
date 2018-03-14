@@ -91,14 +91,14 @@ class CampaignTrackTxtVidQueLesson:
         print "Clicking on save & exit button"
         elements.saveAndExitButton()
         
-        '''#verifying success message
+        #verifying success message
         print "\nVerifying success message"
         
         if elements.successMessage()==actualSuccessMessage:
             print "Message '"+actualSuccessMessage+"' is displayed"
         else:
             print "Success message is not displayed properly"
-            raise Exception'''
+            raise Exception
         
         #Verifying campaign detail page is displayed
         print "\nVerifying campaign detail page is displayed"
@@ -108,19 +108,6 @@ class CampaignTrackTxtVidQueLesson:
         else:
             print "Campaign detail page is not displayed"
             raise Exception
-        
-        
-        #verifying in Campaigns displayed in Campaigns grid
-        elements.searchingForlesson(campaignTitle)
-        
-        if elements.actualCampTitleINGrid()==campaignTitle:
-            print "Campaign '"+campaignTitle+"' displayed in Grid"
-        
-        else:
-            print "Campaign is not displayed in Grid"
-            raise Exception
-        
-        
         
         print "\n----Text Execution Completed----\n"
     
@@ -211,7 +198,7 @@ class CampaignTrackTxtVidQueLesson:
         
         
         
-        '''# verifying success message
+        # verifying success message
         
         
         print "Verifying Success message"
@@ -224,7 +211,7 @@ class CampaignTrackTxtVidQueLesson:
             print("Create a new lesson tab is displayed")
         else:
             print "Success message is not displayed"
-            raise Exception'''
+            raise Exception
 
         print "Lesson published"
         
@@ -334,10 +321,19 @@ class CampaignTrackTxtVidQueLesson:
             print (e)
             raise Exception  
           
-        finally:  
+        finally: 
             second_sheet = book.sheet_by_name('Login_Credentials')
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
+            try:
+                WebDriverWait(driver, 5).until(EC.alert_is_present(),
+                                   'Timed out waiting for PA creation ' +
+                                   'confirmation popup to appear.')
+
+                alert = driver.switch_to.alert
+                alert.accept()
+                print("alert accepted")
+            except Exception:
+                print("no alert")
     
- 
