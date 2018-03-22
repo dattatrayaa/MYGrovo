@@ -183,7 +183,7 @@ class AssignCampOneLessonToMA:
     
     def assignCampOneForLessonToMA(self):
         
-        book=xlrd.open_workbook(os.path.join('TestData.xlsx'))
+        book=xlrd.open_workbook(os.path.join('TestCases/TestData.xlsx'))
         first_sheet = book.sheet_by_name('CampAssign')
         
         
