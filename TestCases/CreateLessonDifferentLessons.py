@@ -10,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
 from CreateLessonDifferentCards import CreateLessonDifferentCards
 
 
@@ -18,6 +19,7 @@ class CreateLessonDifferentLessons:
     def lessonWithText(self,lessonName,textCard):
         
         wait=WebDriverWait(driver, 60)
+        driver.refresh()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
 
         print "Clicking on Lessons button from side menu"
@@ -82,9 +84,7 @@ class CreateLessonDifferentLessons:
             print "Text not displayed in Text card"
             raise Exception
         
-       
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"//div[@class='u-relative u-inline-block']/button")))
-        
         driver.execute_script("arguments[0].click();",publishbutton)
         
         time.sleep(2)
@@ -96,7 +96,6 @@ class CreateLessonDifferentLessons:
         
         
         # verifying success message
-        
         
         
         '''print "Verifying Success message"
@@ -133,6 +132,7 @@ class CreateLessonDifferentLessons:
     def lessonWithImage(self,lessonName,Imagefilepath1):
         
         wait=WebDriverWait(driver, 60)
+        driver.refresh()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
@@ -249,6 +249,7 @@ class CreateLessonDifferentLessons:
     def lessonWithVideo(self,lessonName,videoPath,timeToUploadVideo):
         
         wait=WebDriverWait(driver, timeToUploadVideo)
+        driver.refresh()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
@@ -318,7 +319,6 @@ class CreateLessonDifferentLessons:
         wait.until(EC.visibility_of_element_located((By.XPATH,"//div[@class='u-relative u-inline-block']/button")))
         time.sleep(1)
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div/div/div/div[3]/div[3]/div[1]/div[3]/div[3]/button")))
-        
         driver.execute_script("arguments[0].click();",publishbutton)
         
         time.sleep(2)
@@ -373,6 +373,7 @@ class CreateLessonDifferentLessons:
         print "This is lesson with document"
         
         wait=WebDriverWait(driver, timeToUploaddocument)
+        driver.refresh()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
         
         print "Clicking on Lessons button from side menu"
@@ -496,6 +497,7 @@ class CreateLessonDifferentLessons:
 
     def lessonWithQuestion(self,lessonName,questionCard,ans1,ans2):
         wait=WebDriverWait(driver, 60)
+        driver.refresh()
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[1]/div/nav/div/div[2]/div[3]/a")))
 
         print "Clicking on Lessons button from side menu"
@@ -589,7 +591,11 @@ class CreateLessonDifferentLessons:
             print "Radio button is not selected"
             raise Exception
         
+        rt=CreateLessonDifferentCards()
+        rt.textCard("textCard")
         
+        
+        time.sleep(1)
         publishbutton=wait.until(EC.element_to_be_clickable((By.XPATH,"//div[@class='u-relative u-inline-block']/button")))
         
         driver.execute_script("arguments[0].click();",publishbutton)

@@ -7,6 +7,7 @@ Created on 27-Feb-2018
 import time
 
 from BaseTestClass import driver
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,13 +16,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 class CampPage:
     
     def campaignButtonFromSideMenuXpath(self):
+        time.sleep(2)
         return "(//a[@href='/plan/campaigns'])[1]"
     
     
     def createCampaignButtonXpath(self):
-        return ".//*[@id='content']/div/div[3]/div[2]/div/header/div/div/a"
+        time.sleep(2)
+        return "//a[@href='/plan/campaigns/new/edit']"
     
     def Camp_titleXpath(self):
+        time.sleep(2)
         return ".//*[@id='campaign-title']"
         
     
@@ -137,23 +141,25 @@ class CampPage:
     
     def searchTracksAndSelect(self,trackName):
         
-        wait=WebDriverWait(driver, 60)
-        wait.until(EC.visibility_of_element_located((By.XPATH,"//li[1]/div[1]")))
+        wait=WebDriverWait(driver, 150)
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//ul/li[1]/div[1]")))
         driver.find_element_by_xpath(".//*[@id='search-objectives-in-modal']").send_keys(trackName)
         wait.until(EC.visibility_of_element_located((By.XPATH,"(//li/div[2]/h4[.='"+trackName+"']/../../div[1]/div)[1]")))
         
         driver.find_element_by_xpath("(//li/div[2]/h4[.='"+trackName+"']/../../div[1]/div)[1]").click()
         time.sleep(2)
+        driver.find_element_by_xpath(".//*[@id='search-objectives-in-modal']").clear()
+        
         
     def addToCampaignTrack(self):
         
         wait=WebDriverWait(driver, 60)
-        wait.until(EC.element_to_be_clickable((By.XPATH,"(//button[@class='btn primary-cta-branding'])[3]")))
-        driver.find_element_by_xpath("(//button[@class='btn primary-cta-branding'])[3]").click()
+        wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div[2]/div/div/div[2]/div[3]/button[contains(.,'campaign')]")))
+        driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[3]/button[contains(.,'campaign')]").click()
         
     
     def firstTrackInGrid(self):
-        return driver.find_element_by_xpath("//li[1]/div/span[2]/em").text
+        return driver.find_element_by_xpath("(//li/div/span[2]/em)[1]").text
     
     def setOwnDuration(self,ownDuration):
         wait=WebDriverWait(driver, 60)
@@ -177,6 +183,61 @@ class CampPage:
         
         
         
+    def saveAndPlanAssignmentbutton(self):
+        wait=WebDriverWait(driver, 60)
+        savePlan=wait.until(EC.element_to_be_clickable((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/div[2]/button[1]")))
+        savePlan.click()
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//input[@name='campaign-due-date']")))
+        
+        
+        
+    def planAssignementForHeaderText(self):
+        return driver.find_element_by_xpath("//header/h1[contains(.,'Plan')]").text
+        
+    def assignDateValue(self):
+        time.sleep(2)
+        return driver.find_element_by_xpath("//input[@name='campaign-assign-date']").get_attribute("value")  
+        
+    def dueDateValue(self):
+        
+        return driver.find_element_by_xpath("//input[@name='campaign-due-date']").get_attribute("value")
+    
+    def addingUser(self,nameOFuser):
+        wait=WebDriverWait(driver, 60)
+        
+        ele=driver.find_element_by_xpath("//div[@class='Select-placeholder']")
+        print "Searching for user"
+        webdriver.ActionChains(driver).move_to_element(ele).click().send_keys(nameOFuser).perform()
+        
+        option=wait.until(EC.visibility_of_element_located((By.XPATH,"(//div[@role='option'])[1]")))
+        webdriver.ActionChains(driver).move_to_element(option).click(option).perform()
+        print "User added"
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/section[2]/div/table/tbody/tr/td[1]")))
+        
+        
+    def userInGrid(self):
+        return driver.find_element_by_xpath("(//table/tbody/tr/td[1])[1]").text
+        
+        
+    def sendAssignment(self):
+        wait=WebDriverWait(driver, 60)
+        sendassign=wait.until(EC.element_to_be_clickable((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/section[2]/div/div[4]/button")))
+        sendassign.click()
+        
+        
+    def confirmPopupsendingAssignement(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.visibility_of_element_located((By.XPATH,"html/body/div[2]/div/div/div[1]/h3")))
+        return driver.find_element_by_xpath("html/body/div[2]/div/div/div[1]/h3")
+        
+        
+    def sendAssignmentFromPopup(self):
+        wait=WebDriverWait(driver, 60)
+        wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div[2]/div/div/div[2]/div[2]/button[1]")))
+        driver.find_element_by_xpath("html/body/div[2]/div/div/div[2]/div[2]/button[1]").click()
+        
+        wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div[1]/h1/em")))
+    
         
         
         

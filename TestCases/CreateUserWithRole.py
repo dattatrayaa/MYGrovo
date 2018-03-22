@@ -1,9 +1,8 @@
 '''
-Created on 14-Mar-2018
+Created on 21-Mar-2018
 
 @author: dattatraya
 '''
-
 import os.path
 import time
 import traceback
@@ -20,11 +19,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from xlrd import open_workbook
 import xlrd
 
-from openpyxl import load_workbook
-import csv
 
-
-class CreateLearner:
+class CreateUserWithRole:
     
     def create(self,FirstName,LastName,Email,EmployeeId,Password,role):
         
@@ -88,7 +84,7 @@ class CreateLearner:
         
         
         
-        '''print "Making user as Master admin"
+        print "Entering role into Direct Roles"
         directRoles=driver.find_element_by_xpath("//div[@class='Select-placeholder']")
         
         webdriver.ActionChains(driver).move_to_element(directRoles).click().send_keys(role).perform()
@@ -96,7 +92,7 @@ class CreateLearner:
         
         webdriver.ActionChains(driver).move_to_element(roledisplayed).click().perform()
         
-        print "Role is selected"'''
+        print "Role is selected"
         
         
         
@@ -177,7 +173,7 @@ class CreateLearner:
         print "Home Page is Loaded"
         
         print "Learner Home Page Verification"
-        actualresult = driver.find_element_by_xpath("//*[@id='content']/div/div[1]/div/nav/div[1]/a[2]/span")
+        actualresult = driver.find_element_by_xpath("(//a[@href='/plan/campaigns'])[1]")
         if actualresult.is_displayed():
             print"User is able to login and Dashboard is displayed.."
         else:
@@ -218,10 +214,10 @@ class CreateLearner:
         time.sleep(5)
 
 
-    def createNewLearnerMain(self ,FirstName,LastName,Email,EmployeeId,Password,role,NewPassword,url, username, password):
+    def createUserWithRoleMain(self ,FirstName,LastName,Email,EmployeeId,Password,role,NewPassword,url, username, password):
         
         try:
-            ob=CreateLearner()
+            ob=CreateUserWithRole()
             ob.create(FirstName, LastName, Email, EmployeeId, Password, role)
             ob.createLearnerLogin(Email, Password, NewPassword)
             ob.againLoginUser(url, username, password)
@@ -246,15 +242,4 @@ class CreateLearner:
                 print("alert accepted")
             except Exception:
                 print("no alert")
-        
-        
-if __name__ == '__main__':
-    
-    btc=BaseTestClass()
-    btc.UserLogin()
-    
-    yu=CreateLearner()
-    yu.createNewLearnerMain()
-    
-    
     
