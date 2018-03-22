@@ -2,7 +2,7 @@ test:
   override:
     - pip install -r requirements.txt
     #- pybot -n non-critical -d "robot_results" ./TestSuite1.robot 
-    - robot -T -d ./TestData/"robot_results" -n noncritical ./TestSuite1.robot
+    - robot -T -d ./TestData/"robot_results" -n noncritical ./TestSuite3.robot
     #- robot --rerunfailed output*.xml --output rerun.xml tests  # then re-execute failing
     #- rebot --merge output*.xml rerun.xml                       # finally merge results
     #- npm install -g newman
