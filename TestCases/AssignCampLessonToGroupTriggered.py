@@ -255,7 +255,7 @@ class AssignCampLessonToGroupTriggered:
         print "Group Name entered....."
         
         nextButton=wait.until(EC.element_to_be_clickable((By.XPATH,"html/body/div[2]/div/div/div[2]/div/div[2]/button[1]")))
-        nextButton.click()
+        driver.execute_script('arguments[0].click()',nextButton)
         
         wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[3]/div[2]/div/header/div[1]/h1/div")))
         print "Checking group is created"
@@ -327,7 +327,7 @@ class AssignCampLessonToGroupTriggered:
     
     def assignCampWithOneLessonForGroupTriggered(self):
         
-        book=xlrd.open_workbook(os.path.join('TestCases/TestData.xlsx'))
+        book=xlrd.open_workbook(os.path.join('TestData.xlsx'))
         first_sheet = book.sheet_by_name('CampAssign')
         
         
@@ -495,3 +495,4 @@ class AssignCampLessonToGroupTriggered:
             
             
             
+ 
