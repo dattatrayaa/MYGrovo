@@ -21,26 +21,26 @@ TC1 - AssignCampAllCardsLessonToLearner
 TC2 - AssignCampLessonToGroupTriggered
     Assign Camp With One Lesson For Group Triggered
 
-TC3 - AssignCampNewHireTriggeredOneTrackAndOneLesson
-    Assign Camp New Hire Triggered One Track One Lesson
+#TC3 - AssignCampNewHireTriggeredOneTrackAndOneLesson
+    #Assign Camp New Hire Triggered One Track One Lesson
 
-TC4 - AssignCampOneLessonToCreator
-    Assign Camp One For Lesson To Creator
+#TC4 - AssignCampOneLessonToCreator
+    #Assign Camp One For Lesson To Creator
 
-TC5 - AssignCampOneLessonToLA
-    Assign Camp One For Lesson To LA
+#TC5 - AssignCampOneLessonToLA
+    #Assign Camp One For Lesson To LA
 
-TC6 - AssignCampOneLessonToMA
-    Assign Camp One For Lesson To MA
+#TC6 - AssignCampOneLessonToMA
+    #Assign Camp One For Lesson To MA
 
-TC7 - AssignCampOneLessonTrackToLearner
-    Assign Camp One Lesson Track Learner
+#TC7 - AssignCampOneLessonTrackToLearner
+    #Assign Camp One Lesson Track Learner
 
-TC8 - AssignCampOneTrackContainsFourLessons
-    Assign Camp One Track Contains Four Lessons
+#TC8 - AssignCampOneTrackContainsFourLessons
+    #Assign Camp One Track Contains Four Lessons
 
-TC9 - AssignCampTenLessonsWithGraded
-    Assign Camp With Ten Lessons Graded
+#TC9 - AssignCampTenLessonsWithGraded
+    #Assign Camp With Ten Lessons Graded
 
 TC10 - AssignCampTwoLessonsTwoTracksGraded
     Assign Camp With Two Track Two Lesson Graded
