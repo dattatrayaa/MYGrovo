@@ -61,5 +61,5 @@ class BaseTestClass:
         print ("Clicking on Sign_In button\n")
         driver.find_element_by_xpath("//*[@id='submitButton']").click()
         
-        print "Successfully LogIn to Grovo Application"
+        print "Successfully Logged In to Grovo Application"
         time.sleep(5)
