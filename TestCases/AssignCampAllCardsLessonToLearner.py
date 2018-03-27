@@ -375,7 +375,7 @@ class AssignCampAllCardsLessonToLearner:
         password = cell.value
         
         
-        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestCases/TestData.xlsx')))
+        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xlsx')))
             #print (wb.sheetnames)
         
         sheet = wb['CampAssign']
