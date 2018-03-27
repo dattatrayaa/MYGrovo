@@ -16,6 +16,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import xlrd
 
+from DeleteLesson import DeleteLesson
 from CampaignPageElements import CampPage
 from CreateLearnerNew import CreateLearnerNew
 from CreateLessonDifferentCards import CreateLessonDifferentCards
@@ -400,8 +401,7 @@ class AssignCampAllCardsLessonToLearner:
             
             print "\nCreating Campaign\n"
             obj.campaignTolearnerAllcards(campaignTitle, campDescription, lessonName, nameOFuser)
-            
-			oj=DeleteLesson()
+            oj=DeleteLesson()
             oj.lessonDelete(lessonName)
             
             
