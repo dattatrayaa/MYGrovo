@@ -18,8 +18,8 @@ TC0 - User Login
 TC1 - AssignCampAllCardsLessonToLearner
     Assign Camp All Cardsto Learner
 
-TC2 - AssignCampLessonToGroupTriggered
-    Assign Camp With One Lesson For Group Triggered
+#TC2 - AssignCampLessonToGroupTriggered
+    #Assign Camp With One Lesson For Group Triggered
 
 #TC3 - AssignCampNewHireTriggeredOneTrackAndOneLesson
     #Assign Camp New Hire Triggered One Track One Lesson
@@ -42,5 +42,5 @@ TC2 - AssignCampLessonToGroupTriggered
 #TC9 - AssignCampTenLessonsWithGraded
     #Assign Camp With Ten Lessons Graded
 
-TC10 - AssignCampTwoLessonsTwoTracksGraded
-    Assign Camp With Two Track Two Lesson Graded
+#TC10 - AssignCampTwoLessonsTwoTracksGraded
+    #Assign Camp With Two Track Two Lesson Graded
