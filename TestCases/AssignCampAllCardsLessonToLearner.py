@@ -375,9 +375,9 @@ class AssignCampAllCardsLessonToLearner:
         password = cell.value
         
         
-        wb = load_workbook('TestData.xlsx')
+        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xlsx')))
             #print (wb.sheetnames)
-        
+        ws = wb.active
         sheet = wb['CampAssign']
         
         
@@ -387,7 +387,7 @@ class AssignCampAllCardsLessonToLearner:
         sheet.cell(row=5, column=2).value = EmployeeIdUpdated
         
         
-        wb.save('TestData.xlsx')
+        wb.save(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xlsx')))
             
         print "All User Data Updated in Excel"
         
