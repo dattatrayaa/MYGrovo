@@ -4,14 +4,12 @@ Created on 14-Mar-2018
 @author: dattatraya
 '''
 
-from operator import contains
 import os.path
 import time
 import traceback
 
 from BaseTestClass import driver
 from openpyxl.reader.excel import load_workbook
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -19,7 +17,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 import xlrd
 
 from CampaignPageElements import CampPage
-from CreateLearner import CreateLearner
+from CreateLearnerNew import CreateLearnerNew
 from CreateLessonDifferentCards import CreateLessonDifferentCards
 
 
@@ -268,7 +266,7 @@ class AssignCampAllCardsLessonToLearner:
     
     def assignCampAllCardstoLearner(self):
         
-        book=xlrd.open_workbook(os.path.join('TestCases/TestData.xlsx'))
+        book=xlrd.open_workbook(os.path.join('TestCases/TestData.xltx'))
         first_sheet = book.sheet_by_name('CampAssign')
         
         cell1 = first_sheet.cell(12,1)
@@ -375,7 +373,7 @@ class AssignCampAllCardsLessonToLearner:
         password = cell.value
         
         
-        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xlsx')))
+        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xltx')))
             #print (wb.sheetnames)
         ws = wb.active
         sheet = wb['CampAssign']
@@ -387,13 +385,13 @@ class AssignCampAllCardsLessonToLearner:
         sheet.cell(row=5, column=2).value = EmployeeIdUpdated
         
         
-        wb.save(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xlsx')))
+        wb.save(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xltx')))
             
         print "All User Data Updated in Excel"
         
         try:
             print "\nCreating a New Learner\n"
-            ot=CreateLearner()
+            ot=CreateLearnerNew()
             ot.createNewLearnerMain(FirstName, LastName, Email, EmployeeId, Password, role, NewPassword, url, username, password)
             
             print "\nCreating a lesson\n"
@@ -403,6 +401,8 @@ class AssignCampAllCardsLessonToLearner:
             print "\nCreating Campaign\n"
             obj.campaignTolearnerAllcards(campaignTitle, campDescription, lessonName, nameOFuser)
             
+			oj=DeleteLesson()
+            oj.lessonDelete(lessonName)
             
             
         except Exception as e:
@@ -415,3 +415,44 @@ class AssignCampAllCardsLessonToLearner:
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
+            try:
+                WebDriverWait(driver, 5).until(EC.alert_is_present())
+
+                alert = driver.switch_to.alert
+                alert.accept()
+                print("alert accepted")
+            except Exception:
+                print("no alert")
+            
+            wait=WebDriverWait(driver, 60)
+            unDropDown=wait.until(EC.visibility_of_element_located((By.XPATH,".//*[@id='content']/div/div[1]/div[1]/nav/div[2]/a/span[3]")))
+            driver.execute_script('arguments[0].click()',unDropDown)
+            
+            signOut=driver.find_element_by_xpath("html/body/div/div/div[1]/div[2]/div[2]/a")
+            driver.execute_script('arguments[0].click()',signOut)
+            
+            
+            
+            element = wait.until(EC.presence_of_element_located((By.ID, "password")))
+            
+            if driver.title == "Grovo":
+                print("Grovo Application URL Opened")
+            else:
+                raise Exception.message
+    
+            print "Grovo Sign-In page is displayed"
+            
+            print "Entering User name"
+            driver.find_element_by_xpath(".//*[@id='username']").send_keys(username)
+           
+            print "Entering Password"
+            element.send_keys(password)
+            
+            element.send_keys(Keys.TAB)
+            print "Clicking on Sign_In button"
+            driver.find_element_by_xpath("//*[@id='submitButton']").click()
+            
+            print "Successfully Logged Into Users account"
+            time.sleep(3)
+            
+ 
