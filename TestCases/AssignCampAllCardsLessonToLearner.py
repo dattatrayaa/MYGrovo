@@ -392,7 +392,7 @@ class AssignCampAllCardsLessonToLearner:
         
         try:
             print "\nCreating a New Learner\n"
-            ot=CreateLearnerNew()
+            ot=CreateLearner()
             ot.createNewLearnerMain(FirstName, LastName, Email, EmployeeId, Password, role, NewPassword, url, username, password)
             
             print "\nCreating a lesson\n"
