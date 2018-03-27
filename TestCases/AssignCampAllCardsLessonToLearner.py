@@ -375,7 +375,7 @@ class AssignCampAllCardsLessonToLearner:
         password = cell.value
         
         
-        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestData.xlsx')))
+        wb = load_workbook(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestCases/TestData.xlsx')))
             #print (wb.sheetnames)
         
         sheet = wb['CampAssign']
@@ -387,7 +387,9 @@ class AssignCampAllCardsLessonToLearner:
         sheet.cell(row=5, column=2).value = EmployeeIdUpdated
         
         
-        
+        wb.save(os.path.abspath(os.path.join(os.path.dirname(__file__),'TestCases/TestData.xlsx')))
+            
+        print "All User Data Updated in Excel"
         
         try:
             print "\nCreating a New Learner\n"
@@ -413,5 +415,3 @@ class AssignCampAllCardsLessonToLearner:
             cell = second_sheet.cell(1,1)
             url = cell.value
             driver.get(url)
-			
-        
