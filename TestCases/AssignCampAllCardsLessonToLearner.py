@@ -90,6 +90,7 @@ class AssignCampAllCardsLessonToLearner:
         else:
             print "Lesson not displayed in grid"
         
+        
         wait.until(EC.element_to_be_clickable((By.XPATH,elements.SaveAndExit_ButtonXpath())))
         #Clicking on save & exit button
         print "Clicking on Save and plan assignmet button"
