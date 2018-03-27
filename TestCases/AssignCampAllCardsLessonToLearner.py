@@ -18,7 +18,7 @@ import xlrd
 
 from DeleteLesson import DeleteLesson
 from CampaignPageElements import CampPage
-from CreateLearnerNew import CreateLearnerNew
+from CreateLearnerNew import CreateLearner
 from CreateLessonDifferentCards import CreateLessonDifferentCards
 
 
