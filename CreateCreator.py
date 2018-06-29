@@ -202,6 +202,7 @@ class CreateCreator():
         wait.until(EC.visibility_of_element_located((By.ID,"global-header-search")))
         print "Home Page is Loaded"
         print "Sign out "
+        
         ele =driver.find_element_by_xpath(".//*[@id='content']/div/div[1]/div[1]/nav/div[2]/a/span[3]")
         driver.execute_script('arguments[0].click()',ele)
         elem=driver.find_element_by_xpath("html/body/div/div/div[1]/div[2]/div[2]/a")
