@@ -1,8 +1,4 @@
-'''
-Created on 22-Feb-2018
 
-@author: Sheethu C
-'''
 from operator import contains
 from selenium import webdriver
 from selenium.webdriver.common.by import By
