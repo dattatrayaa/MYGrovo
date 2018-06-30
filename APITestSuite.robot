@@ -3,8 +3,6 @@ Library   TestCases/BaseTestClass.py
 Library   TestCases/BasicInformationValidData_27.py
 Library   TestCases/BasicInformationWithDirectRole_28.py
 
-
-
 *** Test Cases ***
 TC0 - User Login
       User Login
