@@ -10,3 +10,4 @@ before_script:
   - export CHROME_BIN=chromium-browser
 script:
   - robot TestSuite1.robot
+  
