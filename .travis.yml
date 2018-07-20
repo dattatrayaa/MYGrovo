@@ -4,6 +4,7 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  - pip install codecov
 
   
 sudo: required
@@ -17,7 +18,8 @@ addons:
 
 script:
   - python ./TestCases/Dictio.py
-
+  - coverage run ./TestCases/Dictio.py
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - codecov
+
   
