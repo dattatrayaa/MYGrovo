@@ -16,7 +16,7 @@ addons:
 
 
 script:
-  - python BaseTestClass.py
+  - python ./TestCases/BaseTestClass.py
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
