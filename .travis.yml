@@ -18,7 +18,7 @@ addons:
 
 script:
   - python ./TestCases/Dictio.py
-  - coverage ./TestCases/TrackWithTextLesson.py
+  - coverage ./TestCases/Dictio.py
 after_success:
   - codecov
 
