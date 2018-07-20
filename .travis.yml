@@ -16,7 +16,7 @@ addons:
 
 
 script:
-  - python ./TestCases/BaseTestClass.py
+  - python ./TestCases/Dictio.py
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
