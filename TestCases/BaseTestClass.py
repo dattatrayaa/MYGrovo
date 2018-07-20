@@ -13,7 +13,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-driver=webdriver.Chrome()
+driver=webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
 
 class BaseTestClass:
     
