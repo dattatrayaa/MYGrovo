@@ -7,7 +7,7 @@ install:
   - pip install codecov
   - sudo apt-get install chromium-chromedriver
   - sudo apt-get install openvpn
-  - openvpn --config configFile.ovpn
+  - sudo openvpn --config configFile.ovpn
   
 sudo: required
 
