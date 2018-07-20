@@ -14,8 +14,6 @@ addons:
     packages:
     - openvpn
 
-
-
 script:
   - python ./TestCases/Dictio.py
   - coverage run ./TestCases/TrackWithTextLesson.py
